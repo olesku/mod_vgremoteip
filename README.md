@@ -6,20 +6,20 @@ This apache module will replace the remoteip with the correct client ip address 
 
 To install:
 
-# apxs2 -a -i -c mod_vgremoteip.c
+$ apxs2 -a -i -c mod_vgremoteip.c
 
 Example of configuration:
-LoadModule vgremoteip_module modules/mod_vgremoteip.so
+    LoadModule vgremoteip_module modules/mod_vgremoteip.so
 
-<IfModule mod_vgremoteip.c>
-		# Name of header which contains the 'real' client IP.
-        VGRemoteIPHeader X-Forwarded-For
+    <IfModule mod_vgremoteip.c>
+    # Name of header which contains the 'real' client IP.
+     VGRemoteIPHeader X-Forwarded-For
 
-        # Subnet to mark as trusted subnet (this ip will be allowed to set the X-Forwarded-For header and marked as a proxy ip).
-        # You should specify this.
-        VGTrustedProxy 10.1.0.0/26 
+    # Subnet to mark as trusted subnet (this ip will be allowed to set the X-Forwarded-For header and marked as a proxy ip).
+    # You should specify this.
+    VGTrustedProxy 10.1.0.0/26 
 
-        # You can also specify a single ip addresses. 
-        # Do not specify hostnames.
-        VGTrustedProxy 127.0.0.1 
-</IfModule>
+    # You can also specify a single ip addresses. 
+    # Do not specify hostnames.
+    VGTrustedProxy 127.0.0.1 
+    </IfModule>
